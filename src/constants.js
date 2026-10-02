@@ -1,5 +1,5 @@
 // Set VITE_API_URL in .env (dev) or in your host's build settings (prod),
-// e.g. VITE_API_URL=https://wealthlens-api.onrender.com — no trailing /api.
+// e.g. VITE_API_URL=https://your-backend.example.com — no trailing /api.
 export const API_BASE = `${(import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/+$/, "")}/api`;
 
 // App registers this so any authenticated request that comes back 401
