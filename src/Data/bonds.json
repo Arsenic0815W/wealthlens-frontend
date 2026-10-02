@@ -1,0 +1,17 @@
+[
+  {"symbol": "GSEC10Y", "name": "Government of India 10-Year Bond"},
+  {"symbol": "GSEC5Y", "name": "Government of India 5-Year Bond"},
+  {"symbol": "SGB", "name": "Sovereign Gold Bond"},
+  {"symbol": "NHAIBOND", "name": "NHAI Tax-Free Bond"},
+  {"symbol": "PFCBOND", "name": "Power Finance Corporation Bond"},
+  {"symbol": "RECBOND", "name": "REC Limited Bond"},
+  {"symbol": "IRFCBOND", "name": "Indian Railway Finance Corporation Bond"},
+  {"symbol": "HUDCOBOND", "name": "HUDCO Tax-Free Bond"},
+  {"symbol": "NABARDBOND", "name": "NABARD Bond"},
+  {"symbol": "TATACAPBOND", "name": "Tata Capital NCD"},
+  {"symbol": "MUTHOOTBOND", "name": "Muthoot Finance NCD"},
+  {"symbol": "SHRIRAMBOND", "name": "Shriram Finance NCD"},
+  {"symbol": "PSB", "name": "Public Sector Bank Bond"},
+  {"symbol": "CORPBOND", "name": "Corporate Bond (Other)"},
+  {"symbol": "STATEDEV", "name": "State Development Loan (SDL)"}
+]

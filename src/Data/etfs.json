@@ -1,0 +1,22 @@
+[
+  {"symbol": "NIFTYBEES.NS", "name": "Nippon India ETF Nifty 50 BeES"},
+  {"symbol": "JUNIORBEES.NS", "name": "Nippon India ETF Nifty Next 50"},
+  {"symbol": "BANKBEES.NS", "name": "Nippon India ETF Bank BeES"},
+  {"symbol": "GOLDBEES.NS", "name": "Nippon India ETF Gold BeES"},
+  {"symbol": "ICICINIFTY.NS", "name": "ICICI Prudential Nifty 50 ETF"},
+  {"symbol": "ICICIGOLD.NS", "name": "ICICI Prudential Gold ETF"},
+  {"symbol": "HDFCNIFTY.NS", "name": "HDFC Nifty 50 ETF"},
+  {"symbol": "HDFCGOLD.NS", "name": "HDFC Gold ETF"},
+  {"symbol": "SBINIFTY.NS", "name": "SBI Nifty 50 ETF"},
+  {"symbol": "SBIGOLD.NS", "name": "SBI Gold ETF"},
+  {"symbol": "KOTAKNIFTY.NS", "name": "Kotak Nifty ETF"},
+  {"symbol": "KOTAKGOLD.NS", "name": "Kotak Gold ETF"},
+  {"symbol": "MOM100.NS", "name": "Motilal Oswal Nifty 100 ETF"},
+  {"symbol": "MON100.NS", "name": "Motilal Oswal NASDAQ 100 ETF"},
+  {"symbol": "ICICIBANKN.NS", "name": "ICICI Prudential Bank ETF"},
+  {"symbol": "ICICITECH.NS", "name": "ICICI Prudential IT ETF"},
+  {"symbol": "ITBEES.NS", "name": "Nippon India ETF Nifty IT"},
+  {"symbol": "PSUBNKBEES.NS", "name": "Nippon India ETF Nifty PSU Bank BeES"},
+  {"symbol": "CPSEETF.NS", "name": "CPSE ETF"},
+  {"symbol": "LIQUIDBEES.NS", "name": "Nippon India ETF Liquid BeES"}
+]

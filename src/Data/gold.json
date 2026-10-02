@@ -1,0 +1,12 @@
+[
+  {"symbol": "SGB", "name": "Sovereign Gold Bond"},
+  {"symbol": "GOLDBEES.NS", "name": "Nippon India ETF Gold BeES"},
+  {"symbol": "ICICIGOLD.NS", "name": "ICICI Prudential Gold ETF"},
+  {"symbol": "HDFCGOLD.NS", "name": "HDFC Gold ETF"},
+  {"symbol": "SBIGOLD.NS", "name": "SBI Gold ETF"},
+  {"symbol": "KOTAKGOLD.NS", "name": "Kotak Gold ETF"},
+  {"symbol": "AXISGOLD.NS", "name": "Axis Gold ETF"},
+  {"symbol": "PHYSICALGOLD", "name": "Physical Gold (Jewellery / Coins)"},
+  {"symbol": "DIGITALGOLD", "name": "Digital Gold"},
+  {"symbol": "GOLDFUND", "name": "Gold Savings Fund (FoF)"}
+]
