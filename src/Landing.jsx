@@ -1,5 +1,5 @@
 import { TrendingUp, ArrowRight } from "lucide-react";
-import { pageStyle, primaryButtonStyle } from "./constants";
+import { pageStyle } from "./constants";
 
 export default function Landing({ onGetStarted, onLogin }) {
   return (
@@ -27,7 +27,7 @@ export default function Landing({ onGetStarted, onLogin }) {
 
       <div style={statsBarStyle}>
         {[
-          { value: "6", label: "Asset classes" },
+          { value: "7", label: "Asset classes" },
           { value: "Daily", label: "Price sync" },
           { value: "100%", label: "Private" },
         ].map((s) => (

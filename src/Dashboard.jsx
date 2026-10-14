@@ -62,7 +62,9 @@ function TickerAutocomplete({ assetType, value, onChange, error }) {
   const results = searchAssets(dataset, query);
   const freeText = dataset.length === 0;
 
-  useEffect(() => { setQuery(value || ""); }, [assetType]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Reset the query when the asset type changes — adjusted during render, not in an effect.
+  const [prevAssetType, setPrevAssetType] = useState(assetType);
+  if (assetType !== prevAssetType) { setPrevAssetType(assetType); setQuery(value || ""); }
 
   const selectItem = (item) => {
     const label = assetType === "MUTUAL_FUND" ? item.name : item.symbol;
@@ -138,7 +140,8 @@ export default function Dashboard({ token, user, onLogout }) {
     } catch (err) { setError(err.message); } finally { setLoading(false); }
   };
 
-  useEffect(() => { fetchHoldings(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // Mount-time data fetch; fetchHoldings' sync setLoading(true) is the only "setState in effect".
+  useEffect(() => { fetchHoldings(); }, []); // eslint-disable-line react-hooks/exhaustive-deps, react-hooks/set-state-in-effect
 
   const handleDelete = async (h) => {
     if (!window.confirm(`Delete ${h.ticker} (${h.quantity} units)? This can't be undone.`)) return;
@@ -236,14 +239,14 @@ export default function Dashboard({ token, user, onLogout }) {
         )}
 
         <InsightsPanel token={token} refreshKey={refreshKey} />
-        <PortfolioHistoryChart token={token} refreshKey={refreshKey} />
+        <PortfolioHistoryChart token={token} refreshKey={refreshKey} holdings={holdings.filter(isPriceSyncable)} />
         <GainLossChart holdings={holdings} />
 
         <div style={summaryGridStyle}>
           <SummaryCard icon={<Wallet size={16} color="#D4A853" />} label="Total Invested" value={`Rs ${totalInvested.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`} />
           <SummaryCard icon={<Wallet size={16} color="#D4A853" />} label="Current Value" value={`Rs ${totalCurrentValue.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`} />
           <SummaryCard icon={gainLossIcon} label="Total Gain/Loss"
-            value={`${totalGainLoss >= 0 ? "+" : ""}Rs ${Math.abs(totalGainLoss).toLocaleString("en-IN", { maximumFractionDigits: 0 })} (${totalGainLoss >= 0 ? "+" : ""}${totalGainLossPct.toFixed(1)}%)`}
+            value={`${totalGainLoss >= 0 ? "+" : "-"}Rs ${Math.abs(totalGainLoss).toLocaleString("en-IN", { maximumFractionDigits: 0 })} (${totalGainLoss >= 0 ? "+" : ""}${totalGainLossPct.toFixed(1)}%)`}
             valueColor={totalGainLoss >= 0 ? "#10B981" : "#F6465D"} />
           <SummaryCard icon={<Layers size={16} color="#D4A853" />} label="Positions" value={holdings.length} />
         </div>
@@ -300,7 +303,7 @@ export default function Dashboard({ token, user, onLogout }) {
                   <span style={tdStyle}>{Number(h.buyPrice).toLocaleString("en-IN")}</span>
                   <span style={tdStyle}>{hasPrice ? currentPrice.toLocaleString("en-IN") : <span style={{ color: "#4B5563" }}>—</span>}</span>
                   <span style={{ ...tdStyle, flex: 1.3, color: gainColor, fontWeight: 700 }}>
-                    {hasPrice ? `${gainLoss >= 0 ? "+" : ""}${Math.abs(gainLoss).toLocaleString("en-IN", { maximumFractionDigits: 0 })} (${gainLoss >= 0 ? "+" : ""}${gainLossPct.toFixed(1)}%)` : "—"}
+                    {hasPrice ? `${gainLoss >= 0 ? "+" : "-"}${Math.abs(gainLoss).toLocaleString("en-IN", { maximumFractionDigits: 0 })} (${gainLoss >= 0 ? "+" : ""}${gainLossPct.toFixed(1)}%)` : "—"}
                   </span>
                   <span style={{ flex: 0.8, display: "flex", justifyContent: "flex-end", gap: "2px" }}>
                     {isPriceSyncable(h) && (

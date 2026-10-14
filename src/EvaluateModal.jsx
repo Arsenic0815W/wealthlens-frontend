@@ -54,13 +54,16 @@ export default function EvaluateModal({ holding, token, onClose }) {
 
         {!loading && data && (
           <>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", background: verdictStyle.bg, border: `1px solid ${verdictStyle.border}`, borderRadius: "14px", padding: "14px 16px", marginBottom: "16px" }}>
-              <VerdictIcon size={20} color={verdictStyle.text} />
-              <div>
-                <div style={{ fontSize: "15px", fontWeight: 700, color: verdictStyle.text }}>{data.verdict}</div>
-                <div style={{ fontSize: "11.5px", color: verdictStyle.text, opacity: 0.85, fontFamily: "'JetBrains Mono', monospace" }}>Score: {data.score > 0 ? "+" : ""}{data.score} / 100</div>
+            {/* verdict is null when there's no price history before the buy date */}
+            {verdictStyle && (
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", background: verdictStyle.bg, border: `1px solid ${verdictStyle.border}`, borderRadius: "14px", padding: "14px 16px", marginBottom: "16px" }}>
+                <VerdictIcon size={20} color={verdictStyle.text} />
+                <div>
+                  <div style={{ fontSize: "15px", fontWeight: 700, color: verdictStyle.text }}>{data.verdict}</div>
+                  <div style={{ fontSize: "11.5px", color: verdictStyle.text, opacity: 0.85, fontFamily: "'JetBrains Mono', monospace" }}>Score: {Math.round(data.score) > 0 ? "+" : ""}{Math.round(data.score)} / 100</div>
+                </div>
               </div>
-            </div>
+            )}
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "16px" }}>
               <StatBox label="You paid" value={`Rs ${data.buyPrice.toLocaleString("en-IN")}`} />
@@ -76,8 +79,8 @@ export default function EvaluateModal({ holding, token, onClose }) {
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={data.priceHistory} margin={{ top: 6, right: 6, bottom: 0, left: 6 }}>
                       <XAxis dataKey="date" hide />
-                      <YAxis domain={["auto", "auto"]} hide />
-                      <ReferenceLine y={data.buyPrice} stroke="#4B5563" strokeDasharray="4 3" />
+                      <YAxis domain={[(min) => Math.min(min, data.buyPrice) * 0.98, (max) => Math.max(max, data.buyPrice) * 1.02]} hide />
+                      <ReferenceLine y={data.buyPrice} stroke="#9CA3AF" strokeWidth={1.5} strokeDasharray="4 3" ifOverflow="extendDomain" />
                       <Tooltip
                         formatter={(value) => [`Rs ${value.toLocaleString("en-IN")}`, "Price"]}
                         labelFormatter={(label) => new Date(label).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}
