@@ -109,6 +109,8 @@ export default function EvaluateModal({ holding, token, onClose }) {
             </div>
           </>
         )}
+
+        <p style={disclaimerStyle}>For education only. This is a rule-based look at past prices, not investment advice.</p>
         <style>{spinKeyframes}</style>
       </div>
     </div>
@@ -128,4 +130,5 @@ const sectionLabelStyle = { fontSize: "11px", color: "#6B7280", textTransform: "
 const bulletRowStyle = { display: "flex", gap: "8px", alignItems: "flex-start" };
 const bulletDotStyle = { width: "5px", height: "5px", borderRadius: "50%", background: "#4B5563", flexShrink: 0, marginTop: "6px" };
 const bulletTextStyle = { fontSize: "13.5px", color: "#C4C9D4", lineHeight: "1.55" };
+const disclaimerStyle = { fontSize: "10.5px", color: "#6B7280", lineHeight: "1.5", margin: "18px 0 0" };
 
