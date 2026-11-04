@@ -47,7 +47,10 @@ export default function WealthLensAuth({ initialMode = "login", notice = "", onA
     if (!form.email.trim()) errs.email = "Enter your email";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) errs.email = "Enter a valid email";
     if (!form.password) errs.password = "Enter your password";
-    else if (form.password.length < 6) errs.password = "At least 6 characters";
+    // New accounts need 8+ (the server enforces this too). Login keeps no length
+    // rule so accounts created under the old 6-character minimum can still sign in.
+    else if (mode === "signup" && form.password.length < 8) errs.password = "At least 8 characters";
+    else if (mode === "signup" && new TextEncoder().encode(form.password).length > 72) errs.password = "At most 72 characters";
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
